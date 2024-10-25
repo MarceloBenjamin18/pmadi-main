@@ -10,9 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('registros', function (Blueprint $table) {
+        Schema::create('distritos', function (Blueprint $table) {
             $table->id();
-
+            $table->string('nombre')->nullable(false); // Nombre del distrito
+            $table->string('mapa_distrito')->nullable(false); // Mapa del distrito (ruta del PDF)
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('registros');
+        Schema::dropIfExists('distritos');
     }
 };

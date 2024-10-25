@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Select;
 
 class RegistroResource extends Resource
 {
@@ -26,14 +28,34 @@ class RegistroResource extends Resource
                 Forms\Components\Wizard::make([
                     Forms\Components\Wizard\Step::make('Información General')
                         ->schema([
+                            Select::make('distrito')
+                                ->label('Distrito Municipal')
+                                ->options([
+                                    'distrito_1' => 'Distrito 1',
+                                    'distrito_2' => 'Distrito 2',
+                                    'distrito_3' => 'Distrito 3',
+                                    'distrito_4' => 'Distrito 4',
+                                    'distrito_5' => 'Distrito 5',
+                                    'distrito_6' => 'Distrito 6',
+                                ]),
                             Forms\Components\TextInput::make('numero_registro')
                                 ->label('Número de Registro'),
                             Forms\Components\TextInput::make('denominacion_anterior')
                                 ->label('Denominación Anterior'),
-                            Forms\Components\TextInput::make('actual_denominacion')
-                                ->label('Actual Denominación'),
-                            Forms\Components\TextInput::make('estado_actual')
-                                ->label('Estado Actual del Polo Real o Patrimonio'),
+                            Forms\Components\TextInput::make('denominacion_actual')
+                                ->label('Denominación Actual'),
+
+
+                            CheckboxList::make('actual_denominacion')
+                                ->label('ESTADO ACTUAL DEL FOLIO REAL O PARTIDA')
+                                ->options([
+                                    'reposicion' => 'REPOSICIÓN',
+                                    'actualizacion' => 'ACTUALIZACIÓN',
+                                    'cambio_matricula' => 'CAMBIO A MATRICULA',
+                                    'cambio_razon_social' => 'CAMBIO DE RAZON SOCIAL',
+                                    'cambio_jurisdiccion' => 'CAMBIO DE JURISDICCIÓN',
+                                    'solic_transferencia' => 'SOLIC. DE TRANSFERENCIA',
+                                ])
                         ]),
 
                     Forms\Components\Wizard\Step::make('Detalles de la Escritura')
